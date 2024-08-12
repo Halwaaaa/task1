@@ -10,7 +10,7 @@ class TextLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text('logo',
         style: TextStyle(
-          // fontFamily: 'Montserrat',
+          //  fontFamily: 'Montserrat',
           fontWeight: FontWeight.w800,
           fontSize: wdith * 0.1,
           height: hieght * 0.08 / wdith * 0.1,
