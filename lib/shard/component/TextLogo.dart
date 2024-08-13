@@ -12,7 +12,7 @@ class TextLogo extends StatelessWidget {
         style: TextStyle(
           //  fontFamily: 'Montserrat',
           fontWeight: FontWeight.w800,
-          fontSize: wdith * 0.1,
+          fontSize: 64,
           height: hieght * 0.08 / wdith * 0.1,
         ));
   }

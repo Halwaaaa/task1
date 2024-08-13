@@ -5,6 +5,7 @@ import 'package:task2/pages/auth/sigin/singincontroll.dart';
 import 'package:task2/pages/home/layout/layouhomeView.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
