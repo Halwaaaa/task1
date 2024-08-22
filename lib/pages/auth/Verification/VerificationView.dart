@@ -131,7 +131,7 @@ class ButtonSubmit extends StatelessWidget {
         width: wdith * 0.6,
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(7)),
-            color: config.colorBoutton),
+            color: config.colorBorder),
         child: Center(
           child: Text(
             'Submit ',

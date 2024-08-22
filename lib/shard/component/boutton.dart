@@ -15,8 +15,8 @@ class Boutton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: hieght * 0.08,
-      width: wdith * 0.3,
+      height: hieght,
+      width: wdith,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: const Color.fromRGBO(60, 35, 103, 1)),

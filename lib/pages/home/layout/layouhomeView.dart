@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_responsive.dart';
+import 'package:task2/Models/bestseller.dart';
+import 'package:task2/Modules/Modules.dart';
+
+import 'package:task2/pages/home/Flower/Flowerpage/FlowerpageView.dart';
+import 'package:task2/pages/home/home_page/home_page.dart';
 import 'package:task2/shard/component/TextLogo.dart';
+import 'package:task2/shard/component/boutton.dart';
+import 'package:task2/shard/component/boutton2.dart';
 import 'package:task2/shard/constant/config.dart';
 import 'package:task2/shard/constant/methed.dart';
 
@@ -39,51 +46,84 @@ class _LayoutHomeState extends State<LayoutHome> {
 
     Config config = Config();
     return Scaffold(
-        bottomNavigationBar: Container(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(100))),
-          child: BottomNavigationBar(items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.abc_outlined), label: "s", tooltip: "ss"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.abc_outlined), label: "aa", tooltip: "zzz"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.abc_outlined), label: "kk", tooltip: "sss"),
-          ]),
+        bottomNavigationBar: ClipRRect(
+          clipBehavior: Clip.hardEdge,
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(39), topRight: Radius.circular(39)),
+          child: Container(
+            //height: 90,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            decoration: BoxDecoration(
+              //  backgroundBlendMode: BlendMode.color,
+              color: config.colorAppbar2,
+            ),
+            child: BottomNavigationBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.abc_outlined),
+                      label: "s",
+                      tooltip: "ss"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.abc_outlined),
+                      label: "aa",
+                      tooltip: "zzz"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.abc_outlined),
+                      label: "kk",
+                      tooltip: "sss"),
+                ]),
+          ),
         ),
         backgroundColor: Colors.white,
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
               pinned: true,
-              toolbarHeight: ResponsvTextSize(hieght * 0.3, 300, 100),
+              toolbarHeight: ResponsvTextSize(hieght * 0.3, 300, 150),
               // titleSpacing: 150,
               title: Appbar(
                 hieght: hieght,
                 wdith: wdith,
                 config: config,
               ),
-              bottom: PreferredSize(
-                  preferredSize: const Size.fromHeight(100),
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 50),
-                    child: ConSearch(config: config, wdith: wdith),
-                  )),
-              expandedHeight: ResponsvTextSize(hieght * 0.42, 350, 250),
+              // bottom: PreferredSize(
+              //     preferredSize: const Size.fromHeight(100),
+              //     child: Padding(
+              //       padding: const EdgeInsets.only(bottom: 50),
+              //       child: ConSearch(config: config, wdith: wdith),
+              //     )),
+              //  expandedHeight: ResponsvTextSize(hieght * 0.42, 350, 100),
               backgroundColor: config.colorAppbar2,
               shape: const RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.only(bottomLeft: Radius.circular(61))),
             ),
-            const SliverToBoxAdapter(),
-            SliverAnimatedList(
-              key: key1,
-              initialItemCount: 10,
-              itemBuilder: (context, index, animation) {
-                return const Text("hhh");
-              },
-            )
+
+            const FlowerpageView(),
+
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 20,
+              ),
+            ),
+
+            const SliverMainAxisGroup(slivers: [
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 20,
+                ),
+              )
+            ])
+
+            // SliverAnimatedList(
+            //   key: key1,
+            //   initialItemCount: 10,
+            //   itemBuilder: (context, index, animation) {
+            //     return const Text("hhh");
+            //   },
+            // ),
           ],
         ));
   }
@@ -104,8 +144,6 @@ class Appbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -113,8 +151,8 @@ class Appbar extends StatelessWidget {
           children: [
             Image.asset(
               'images/homeFlower.png',
-              height: 125,
-              width: 125,
+              height: ResponsvTextSize(hieght * 0.15, 125, 80),
+              width: ResponsvTextSize(hieght * 0.15, 125, 80),
             ),
             TextLogo(
               hieght: hieght,
@@ -122,7 +160,12 @@ class Appbar extends StatelessWidget {
             )
           ],
         ),
-        //config.smallSpace(),
+        // config.smallSpace(),
+        ConSearch(
+          config: config,
+          wdith: wdith,
+        ),
+        config.smallSpace(),
       ],
     );
   }

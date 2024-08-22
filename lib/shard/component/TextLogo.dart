@@ -12,8 +12,8 @@ class TextLogo extends StatelessWidget {
         style: TextStyle(
           //  fontFamily: 'Montserrat',
           fontWeight: FontWeight.w800,
-          fontSize: 64,
-          height: hieght * 0.08 / wdith * 0.1,
+          fontSize: ResponsvTextSize(wdith * 0.2, 70, 30),
+          // height: hieght * 0.08 / wdith * 0.1,
         ));
   }
 }
