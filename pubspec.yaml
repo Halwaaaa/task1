@@ -70,6 +70,7 @@ flutter:
     - images/Bestseller2.png
     - images/gifts.png
     - images/image1.png
+    - images/trash.png
     - images/image2.png
     - images/image3.png
     - images/image4.png
@@ -77,6 +78,7 @@ flutter:
     - images/image6.png
     - images/image7.png
     - images/FlowerDatitles.png
+    - images/MyCart.png
 
 
 

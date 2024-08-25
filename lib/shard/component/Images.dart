@@ -8,6 +8,6 @@ class ImageLeft extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset('images/left.png',
-        height: 27, width: 27, color: Colors.grey);
+        height: 35, width: 35, color: Colors.grey);
   }
 }

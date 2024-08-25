@@ -115,3 +115,7 @@ List<List<Color>> ModulesFlowerSelectedStar = [
     Colors.white,
   ]
 ];
+List<Widget> ModulesBouttonsOrder = [
+  const Icon(Icons.plus_one),
+  Image.asset('images/trash.png')
+];

@@ -68,4 +68,21 @@ class Config {
     return const TextStyle(
         fontSize: 15, fontWeight: FontWeight.w500, color: Colors.black);
   }
+
+  TextStyle TextMyCartOrder(Color colorText) {
+    return TextStyle(
+        fontSize: 16, fontWeight: FontWeight.w500, color: colorText);
+  }
+
+  TextStyle TextInformationOrderTitle() {
+    return const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: Color.fromRGBO(140, 138, 140, 1));
+  }
+
+  TextStyle TextInformationOrderboby() {
+    return TextStyle(
+        fontSize: 15, fontWeight: FontWeight.w500, color: PrimerColor);
+  }
 }
