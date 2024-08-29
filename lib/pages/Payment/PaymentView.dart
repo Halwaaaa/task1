@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:task2/Modules/Modules.dart';
 import 'package:task2/pages/auth/sigin/singincontroll.dart';
+import 'package:task2/shard/component/AppBarPayments.dart';
+import 'package:task2/shard/component/DafultTextFormFiled.dart';
 import 'package:task2/shard/component/Images.dart';
 import 'package:task2/shard/component/boutton.dart';
 import 'package:task2/shard/constant/config.dart';
@@ -22,7 +24,7 @@ class PaymentView extends StatelessWidget {
           children: [
             SizedBox(
               height: hieght * 0.2,
-              child: AppBar(config: config),
+              child: AppBarPa(config: config),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
@@ -99,35 +101,5 @@ class PaymentView extends StatelessWidget {
         ),
       ),
     ));
-  }
-}
-
-class AppBar extends StatelessWidget {
-  const AppBar({
-    super.key,
-    required this.config,
-  });
-
-  final Config config;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsetsDirectional.only(start: 30),
-          child: FittedBox(child: ImageLeft()),
-        ),
-        const Spacer(),
-        FittedBox(
-          child: Text(
-            'Payment ',
-            style: config.TextTabBarTitle(),
-          ),
-        ),
-        const Spacer()
-      ],
-    );
   }
 }

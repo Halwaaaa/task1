@@ -80,14 +80,9 @@ class _MyCartState extends State<MyCart> {
                               Flexible(
                                 child: FittedBox(
                                   child: Center(
-                                    child: Text(
-                                      "My Cart",
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                          fontSize: 100,
-                                          fontWeight: FontWeight.w700,
-                                          color: config.PrimerColor),
-                                    ),
+                                    child: Text("My Cart",
+                                        maxLines: 1,
+                                        style: config.TextTabBarTitle()),
                                   ),
                                 ),
                               ),
@@ -362,7 +357,7 @@ class point extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = config.colorAppbar // لون الخط
+      ..color = Colors.amber // لون الخط
       ..strokeCap = StrokeCap.round // شكل نهاية الخط
       ..strokeWidth = 5;
     Path path = Path();

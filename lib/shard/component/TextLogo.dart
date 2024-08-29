@@ -8,11 +8,11 @@ class TextLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('logo',
+    return const Text('logo',
         style: TextStyle(
           //  fontFamily: 'Montserrat',
           fontWeight: FontWeight.w800,
-          fontSize: ResponsvTextSize(wdith * 0.2, 70, 30),
+          fontSize: 100,
           // height: hieght * 0.08 / wdith * 0.1,
         ));
   }

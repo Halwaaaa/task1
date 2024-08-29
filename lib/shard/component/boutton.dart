@@ -6,12 +6,14 @@ class Boutton extends StatelessWidget {
       required this.hieght,
       required this.wdith,
       required this.titil,
+      this.size,
       this.fillColor,
       this.textColor});
 
   final double hieght;
   final double wdith;
   final String titil;
+  double? size;
   Color? fillColor;
   Color? textColor;
 
@@ -28,7 +30,7 @@ class Boutton extends StatelessWidget {
           titil,
           style: TextStyle(
               color: textColor ?? Colors.white,
-              fontSize: 16,
+              fontSize: size ?? 16,
               fontWeight: FontWeight.w900),
         ),
       ),

@@ -4,6 +4,12 @@ import 'package:task2/Models/Reviews.dart';
 import 'package:task2/Models/bestseller.dart';
 import 'package:task2/Models/productCard.dart';
 
+List<String> ModulesLoginTextFormTiile = [
+  'Email',
+  'Phone Number ',
+  'Password',
+];
+
 List<Bestseller> bestsellerModules = [
   Bestseller(
       ImageName: 'images/Bestseller1.png',
@@ -118,4 +124,27 @@ List<List<Color>> ModulesFlowerSelectedStar = [
 List<Widget> ModulesBouttonsOrder = [
   const Icon(Icons.plus_one),
   Image.asset('images/trash.png')
+];
+List<String> ModulesTextFormTitleOfPayment = [
+  'Name',
+  'Phone Number ',
+  'Email',
+  'Town/City'
+];
+List<String> ModulesPaymentMethod = [
+  'Credit Card',
+  'Debit Card',
+  'PayPal',
+  'Digital Wallet'
+];
+List<String> ModulesSettingTitle = [
+  'Account Information',
+  'Payment Methods',
+  'Order History',
+  'Security Sittings',
+  'Support & Feedback',
+  'Language Sittings',
+  'Legal Information',
+  'About us',
+  'Log Out',
 ];

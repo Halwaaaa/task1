@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task2/shard/component/DafultTextFormFiled.dart';
 import 'package:task2/shard/component/Images.dart';
 import 'package:task2/shard/component/TextFormFiled.dart';
 import 'package:task2/shard/component/TextForme.dart';
@@ -237,43 +238,6 @@ class TextSingnUp extends StatelessWidget {
             fontSize: 32,
             color: config.PrimerColor,
             fontWeight: FontWeight.w400),
-      ),
-    );
-  }
-}
-
-class DafulteTextForm extends StatelessWidget {
-  DafulteTextForm(
-      {super.key,
-      required this.config,
-      required this.title,
-      this.ColorForHindenText,
-      this.prfixIcon});
-
-  final Config config;
-  Widget? prfixIcon;
-  final String title;
-  Color? ColorForHindenText = const Color.fromRGBO(140, 138, 140, 1);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      child: TextFormField(
-        //focusNode: FocusNode(),
-        decoration: InputDecoration(
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-            prefixIcon: prfixIcon,
-            fillColor: Colors.white,
-            focusColor: const Color.fromARGB(255, 78, 77, 72),
-            filled: true,
-            hintText: title,
-            hintStyle: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontSize: 20,
-                color: ColorForHindenText),
-            border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7)))),
       ),
     );
   }

@@ -85,4 +85,19 @@ class Config {
     return TextStyle(
         fontSize: 15, fontWeight: FontWeight.w500, color: PrimerColor);
   }
+
+  TextStyle TextTabBarTitle() {
+    return TextStyle(
+        fontSize: 32, fontWeight: FontWeight.w700, color: PrimerColor);
+  }
+
+  TextStyle TextPaymentTitle() {
+    return TextStyle(
+        fontSize: 20, fontWeight: FontWeight.w500, color: PrimerColor);
+  }
+
+  TextStyle TextPaymentboby() {
+    return TextStyle(
+        fontSize: 20, fontWeight: FontWeight.w400, color: colorSmailText);
+  }
 }
