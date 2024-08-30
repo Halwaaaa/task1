@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task2/pages/MyCart/My_cart.dart';
 import 'package:task2/pages/Payment/PaymentView.dart';
 import 'package:task2/pages/Payment/paymentesview.dart';
@@ -7,6 +8,7 @@ import 'package:task2/pages/auth/Verification/VerificationView.dart';
 import 'package:task2/pages/auth/login/loginView.dart';
 import 'package:task2/pages/auth/sigin/singincontroll.dart';
 import 'package:task2/pages/home/layout/layouhomeView.dart';
+import 'package:task2/shard/constant/Them.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,13 +21,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
-              .copyWith(background: const Color.fromRGBO(230, 246, 246, 1)),
-        ),
+        // highContrastTheme: ThemeData.dark(),
+        darkTheme: them.customDarkThem,
+        theme: them.customlightThem,
+        themeMode: ThemeMode.light,
         home: const loginView());
   }
 }

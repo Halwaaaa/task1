@@ -106,11 +106,13 @@ class SingView extends StatelessWidget {
                                 child: DafulteTextForm(
                                   config: config,
                                   title: "Email",
+                                  isDark: false,
                                 ),
                               ),
                               config.smallSpace(),
                               Expanded(
                                 child: DafulteTextForm(
+                                  isDark: false,
                                   config: config,
                                   title: "Phone Number ",
                                 ),
@@ -118,6 +120,7 @@ class SingView extends StatelessWidget {
                               config.smallSpace(),
                               Expanded(
                                 child: DafulteTextForm(
+                                  isDark: false,
                                   config: config,
                                   title: " User Name",
                                 ),
@@ -127,6 +130,7 @@ class SingView extends StatelessWidget {
                               ),
                               Expanded(
                                 child: DafulteTextForm(
+                                  isDark: false,
                                   config: config,
                                   title: "Password",
                                 ),
@@ -134,6 +138,7 @@ class SingView extends StatelessWidget {
                               config.smallSpace(),
                               Expanded(
                                 child: DafulteTextForm(
+                                  isDark: false,
                                   config: config,
                                   title: "Re Paasword",
                                 ),
@@ -141,6 +146,7 @@ class SingView extends StatelessWidget {
                               config.smallSpace(),
                               Expanded(
                                 child: DafulteTextForm(
+                                  isDark: false,
                                   config: config,
                                   title: "Upload PDF ",
                                   ColorForHindenText: config.PrimerColor,

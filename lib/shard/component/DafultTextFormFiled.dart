@@ -5,12 +5,14 @@ class DafulteTextForm extends StatelessWidget {
   DafulteTextForm(
       {super.key,
       required this.config,
+      required this.isDark,
       required this.title,
       this.ColorForHindenText,
       this.borderRadius,
       this.prfixIcon});
 
   final Config config;
+  final bool isDark;
   Widget? prfixIcon;
   final String title;
   Color? ColorForHindenText = const Color.fromRGBO(140, 138, 140, 1);
@@ -19,14 +21,14 @@ class DafulteTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 350),
+      constraints: const BoxConstraints(maxWidth: 400),
       child: TextFormField(
         //focusNode: FocusNode(),
         decoration: InputDecoration(
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+                const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
             prefixIcon: prfixIcon,
-            fillColor: Colors.white,
+            // fillColor: Colors.white,
             focusColor: const Color.fromARGB(255, 78, 77, 72),
             filled: true,
             hintText: title,
@@ -35,7 +37,7 @@ class DafulteTextForm extends StatelessWidget {
                 fontSize: 20,
                 color: ColorForHindenText),
             border: OutlineInputBorder(
-                borderSide: BorderSide.none,
+                borderSide: isDark ? const BorderSide() : BorderSide.none,
                 borderRadius: borderRadius == null
                     ? const BorderRadius.all(Radius.circular(7))
                     : borderRadius!)),

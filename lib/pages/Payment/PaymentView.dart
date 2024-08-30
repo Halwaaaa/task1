@@ -43,6 +43,7 @@ class PaymentView extends StatelessWidget {
                           children: [
                             DafulteTextForm(
                               config: config,
+                              isDark: false,
                               title: ModulesTextFormTitleOfPayment[index],
                               // ColorForHindenText: Colors.amber,
                             ),
@@ -54,6 +55,7 @@ class PaymentView extends StatelessWidget {
                     DafulteTextForm(
                       config: config,
                       title: 'Adress',
+                      isDark: false,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(6),
                         topRight: Radius.circular(6),
@@ -61,6 +63,7 @@ class PaymentView extends StatelessWidget {
                     ),
                     DafulteTextForm(
                       config: config,
+                      isDark: false,
                       title: 'Special Instructions About Adress',
                       borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(6),

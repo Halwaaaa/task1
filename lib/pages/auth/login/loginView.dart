@@ -11,6 +11,7 @@ import 'package:task2/shard/component/TextFormFiled.dart';
 import 'package:task2/shard/component/TextForme.dart';
 import 'package:task2/shard/component/TextLogo.dart';
 import 'package:task2/shard/component/boutton.dart';
+import 'package:task2/shard/constant/Them.dart';
 import 'package:task2/shard/constant/config.dart';
 import 'package:task2/shard/constant/methed.dart';
 import 'package:task2/shard/constant/numder.dart';
@@ -45,12 +46,17 @@ class _loginViewState extends State<loginView> {
 
   @override
   Widget build(BuildContext context) {
+    // Get.changeThemeMode(ThemeMode.dark);
+
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+    print(Theme.of(context).brightness);
+
     var hieght = MediaQuery.sizeOf(context).height;
     var wdith = MediaQuery.sizeOf(context).width;
     Config config = Config();
     GetxController LoginConttroll = Get.put(LoginCon());
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(230, 246, 246, 1),
+      // backgroundColor: const Color.fromRGBO(230, 246, 246, 1),
       body: SingleChildScrollView(
         child: IntrinsicHeight(
           child: Column(
@@ -69,6 +75,9 @@ class _loginViewState extends State<loginView> {
                           painter: image == null
                               ? null
                               : ArcPainter(
+                                  fillcolor: isDark
+                                      ? config.colorAppbarDark
+                                      : config.colorAppbar,
                                   center: Offset(wdith * 0.4, 0),
                                   config: config,
                                   image: image!,
@@ -107,6 +116,7 @@ class _loginViewState extends State<loginView> {
                                       child: ItemTextFormFiled(
                                           index: index,
                                           config: config,
+                                          isDark: isDark,
                                           wdith: wdith),
                                     )),
                           ),
@@ -115,8 +125,8 @@ class _loginViewState extends State<loginView> {
                       Flexible(
                           flex: 1,
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.only(start: wdith * 0.1),
+                            padding: EdgeInsetsDirectional.only(
+                                start: wdith * 0.1, end: wdith * 0.1),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -137,6 +147,7 @@ class _loginViewState extends State<loginView> {
                                     TextForgtPassword(
                                         hieght: hieght, wdith: wdith),
                                     config.LargeSpace(context),
+                                    config.AvgSpace(context),
                                     TextSingin(hieght: hieght, wdith: wdith),
                                     config.smallSpace(),
 
@@ -165,6 +176,9 @@ class _loginViewState extends State<loginView> {
                         painter: image == null
                             ? null
                             : ArcPainter(
+                                fillcolor: Get.isDarkMode
+                                    ? config.colorAppbarDark
+                                    : config.colorAppbar,
                                 center: Offset(0, hieght * 0.1),
                                 config: config,
                                 image: image!,
@@ -198,6 +212,7 @@ class ItemTextFormFiled extends StatelessWidget {
   const ItemTextFormFiled({
     super.key,
     required this.config,
+    required this.isDark,
     required this.wdith,
     required this.index,
   });
@@ -205,13 +220,15 @@ class ItemTextFormFiled extends StatelessWidget {
   final Config config;
   final double wdith;
   final int index;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.only(
-          start: wdith * 0.1, end: wdith * 0.05, top: 30),
+          start: wdith * 0.1, end: wdith * 0.1, top: 30),
       child: DafulteTextForm(
+        isDark: isDark,
         title: ModulesLoginTextFormTiile[index],
         config: config,
       ),
@@ -362,9 +379,10 @@ class ArcPainter extends CustomPainter {
   final ui.Image image;
   final Offset center;
   final double startAngle;
-
+  final Color fillcolor;
   ArcPainter(
       {required this.center,
+      required this.fillcolor,
       required this.startAngle,
       required this.config,
       required this.radius,
@@ -373,7 +391,7 @@ class ArcPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = config.colorAppbar
+      ..color = fillcolor
       ..style = PaintingStyle.fill
       ..strokeWidth = 4.0;
 
