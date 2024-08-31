@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:task2/main.dart';
 import 'package:task2/shard/component/Images.dart';
 import 'package:task2/shard/component/boutton.dart';
 import 'package:task2/shard/constant/config.dart';
@@ -12,102 +13,151 @@ class VerificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     var hieght = MediaQuery.sizeOf(context).height;
     var wdith = MediaQuery.sizeOf(context).width;
+
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     // print(hieght * 0.44);
     //print(hieght);
     Config config = Config();
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: IntrinsicHeight(
-          child: Column(
-            children: [
-              Stack(
-                clipBehavior: Clip.antiAliasWithSaveLayer,
+      backgroundColor:
+          isDark ? const Color.fromRGBO(69, 85, 85, 10) : Colors.white,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            leadingWidth: wdith,
+            //expandedHeight: ,
+            toolbarHeight: hieght * 0.4,
+            pinned: true,
+            title: Stack(
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: hieght * 0.08),
+                  child: const ImageLeft(),
+                ),
+                Center(
+                  child: Image.asset(
+                    'images/verfictionImage.png',
+                    height: hieght * 0.4,
+                    width: wdith * 0.5,
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+              ],
+            ),
+            backgroundColor: config.colorAppbar2,
+            shape: RoundedRectangleBorder(
+                // color: ,
+                borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(hieght * 0.1),
+              bottomRight: Radius.circular(hieght * 0.1),
+            )),
+          ),
+          SliverToBoxAdapter(
+            child: IntrinsicHeight(
+              child: Column(
                 children: [
-                  Container(
-                    height: ResponsvTextSize(hieght * 0.3, 350, 200),
-                    decoration: BoxDecoration(
-                        color: config.colorAppbar2,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(hieght * 0.1),
-                          bottomRight: Radius.circular(hieght * 0.1),
-                        )),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: hieght * 0.08),
-                    child: const ImageLeft(),
-                  ),
-                  Center(
-                    child: Image.asset(
-                      'images/verfictionImage.png',
-                      height: ResponsvTextSize(hieght * 0.3, 300, 200),
-                      width: wdith * 0.5,
+                  Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.only(
+                            start: 20, end: 20),
+                        child: Column(
+                          //  mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            config.AvgSpace(context),
+                            Center(
+                                child: TextVerification(
+                              config: config,
+                              color: isDark
+                                  ? config.colorTextDark
+                                  : config.colorSmailText,
+                            )),
+                            config.AvgSpace(context),
+                            Center(
+                                child: TextPlaesenter(
+                              config: config,
+                              isDark: isDark,
+                              color: isDark
+                                  ? config.colorTextDark
+                                  : config.colorSmailText,
+                            )),
+                            config.smallSpace(),
+                          ],
+                        ),
+                      )),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.symmetric(horizontal: 20),
+                      child: Column(
+                        children: [
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 500),
+                            child: Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: List.generate(6, (index) {
+                                  return Flexible(
+                                    child: Column(
+                                      children: [
+                                        const SizedBox(
+                                          width: 100,
+                                        ),
+                                        ConstrainedBox(
+                                          constraints: const BoxConstraints(
+                                              maxWidth: 50),
+                                          child: TextFormField(
+                                            maxLength: 1,
+                                            textAlign: TextAlign.center,
+                                            decoration: const InputDecoration(
+                                                focusColor: Colors.amber),
+                                            onChanged: (value) {
+                                              if (value.length == 1 &&
+                                                  index < 6) {
+                                                FocusScope.of(context)
+                                                    .nextFocus();
+                                              } else if (value.isEmpty &&
+                                                  index > 0) {
+                                                FocusScope.of(context)
+                                                    .previousFocus();
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                              ),
+                            ),
+                          ),
+                          config.smallSpace(),
+                          Text(
+                            "Verification code consists of numbers and letters ",
+                            style: TextStyle(
+                              color: isDark
+                                  ? Config().colorTextDark
+                                  : config.colorSmailText,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          config.smallSpace(),
+                          ButtonSubmit(wdith: wdith, config: config),
+                          config.LargeSpace(context)
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-              Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Column(
-                      //  mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        config.AvgSpace(context),
-                        Center(child: TextVerification(config: config)),
-                        config.AvgSpace(context),
-                        TextPlaesenter(config: config),
-                        config.smallSpace(),
-                        TextReSend(config: config),
-                      ],
-                    ),
-                  )),
-              Expanded(
-                flex: 1,
-                child: Column(
-                  children: [
-                    //config.smallSpace(),
-                    //config.smallSpace(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: List.generate(4, (index) {
-                        return SizedBox(
-                          width: 50,
-                          child: TextFormField(
-                            maxLength: 1,
-                            textAlign: TextAlign.center,
-                            decoration:
-                                const InputDecoration(focusColor: Colors.amber),
-                            onChanged: (value) {
-                              if (value.length == 1 && index < 3) {
-                                FocusScope.of(context).nextFocus();
-                              } else if (value.isEmpty && index > 0) {
-                                FocusScope.of(context).previousFocus();
-                              }
-                            },
-                          ),
-                        );
-                      }),
-                    ),
-                    config.smallSpace(),
-                    Text(
-                      "Verification code consists of numbers and letters ",
-                      style: TextStyle(
-                        color: config.colorSmailText,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    config.smallSpace(),
-                    ButtonSubmit(wdith: wdith, config: config),
-                    config.LargeSpace(context)
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -128,7 +178,7 @@ class ButtonSubmit extends StatelessWidget {
     return Center(
       child: Container(
         height: 60,
-        width: wdith * 0.6,
+        width: ResponsvTextSizemix(wdith * 0.6, 200),
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(7)),
             color: config.colorBorder),
@@ -147,54 +197,63 @@ class ButtonSubmit extends StatelessWidget {
 }
 
 class TextReSend extends StatelessWidget {
-  const TextReSend({
-    super.key,
-    required this.config,
-  });
+  const TextReSend({super.key, required this.config, required this.color});
 
   final Config config;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       'Re send code',
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        color: config.PrimerColor,
-      ),
+      textAlign: TextAlign.start,
+      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: color),
     );
   }
 }
 
 class TextPlaesenter extends StatelessWidget {
-  const TextPlaesenter({
-    super.key,
-    required this.config,
-  });
+  const TextPlaesenter(
+      {super.key,
+      required this.isDark,
+      required this.config,
+      required this.color});
 
   final Config config;
+  final Color color;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Pleas enter verification code sent to Email address .....@Gmail.com Valid to 10 minuts',
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        color: config.colorSmailText,
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Pleas enter verification code sent to Email address .....@Gmail.com Valid to 10 minuts',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: color,
+          ),
+        ),
+        TextReSend(
+          config: config,
+          color: isDark
+              ? const Color.fromRGBO(160, 142, 164, 1)
+              : config.PrimerColor,
+        ),
+      ],
     );
   }
 }
 
 class TextVerification extends StatelessWidget {
-  const TextVerification({
-    super.key,
-    required this.config,
-  });
+  const TextVerification(
+      {super.key, required this.config, required this.color});
 
   final Config config;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +261,7 @@ class TextVerification extends StatelessWidget {
       "Verification Code",
       style: TextStyle(
         fontSize: 32,
-        color: config.colorSmailText,
+        color: color,
         fontWeight: FontWeight.w500,
       ),
     );

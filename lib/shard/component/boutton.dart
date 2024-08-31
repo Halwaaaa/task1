@@ -8,6 +8,7 @@ class Boutton extends StatelessWidget {
       required this.titil,
       this.size,
       this.fillColor,
+      this.ontap,
       this.textColor});
 
   final double hieght;
@@ -16,22 +17,26 @@ class Boutton extends StatelessWidget {
   double? size;
   Color? fillColor;
   Color? textColor;
+  void Function()? ontap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: hieght,
-      width: wdith,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: fillColor ?? const Color.fromRGBO(60, 35, 103, 1)),
-      child: Center(
-        child: Text(
-          titil,
-          style: TextStyle(
-              color: textColor ?? Colors.white,
-              fontSize: size ?? 16,
-              fontWeight: FontWeight.w900),
+    return InkWell(
+      onTap: ontap,
+      child: Container(
+        height: hieght,
+        width: wdith,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: fillColor ?? const Color.fromRGBO(60, 35, 103, 1)),
+        child: Center(
+          child: Text(
+            titil,
+            style: TextStyle(
+                color: textColor ?? Colors.white,
+                fontSize: size ?? 16,
+                fontWeight: FontWeight.w900),
+          ),
         ),
       ),
     );

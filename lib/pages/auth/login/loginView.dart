@@ -54,7 +54,7 @@ class _loginViewState extends State<loginView> {
     var hieght = MediaQuery.sizeOf(context).height;
     var wdith = MediaQuery.sizeOf(context).width;
     Config config = Config();
-    GetxController LoginConttroll = Get.put(LoginCon());
+    LoginCon LoginConttroll = Get.put(LoginCon());
     return Scaffold(
       // backgroundColor: const Color.fromRGBO(230, 246, 246, 1),
       body: SingleChildScrollView(
@@ -152,6 +152,7 @@ class _loginViewState extends State<loginView> {
                                     config.smallSpace(),
 
                                     Boutton(
+                                        ontap: LoginConttroll.loginButton(),
                                         hieght: 60,
                                         wdith: 170,
                                         titil: 'Login '),

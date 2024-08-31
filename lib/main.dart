@@ -9,6 +9,7 @@ import 'package:task2/pages/auth/login/loginView.dart';
 import 'package:task2/pages/auth/sigin/singincontroll.dart';
 import 'package:task2/pages/home/layout/layouhomeView.dart';
 import 'package:task2/shard/constant/Them.dart';
+import 'package:task2/shard/constant/getPage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,11 +23,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        title: 'Flutter Demo',
-        // highContrastTheme: ThemeData.dark(),
-        darkTheme: them.customDarkThem,
-        theme: them.customlightThem,
-        themeMode: ThemeMode.light,
-        home: const loginView());
+      title: 'Flutter Demo',
+      // highContrastTheme: ThemeData.dark(),
+      darkTheme: them.customDarkThem,
+      theme: them.customlightThem,
+      initialRoute: '/',
+      getPages: getPage,
+      // routingCallback: ,
+      themeMode: ThemeMode.dark,
+      //home: const loginView()
+    );
   }
 }

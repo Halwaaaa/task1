@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task2/shard/component/DafultTextFormFiled.dart';
 import 'package:task2/shard/component/Images.dart';
 import 'package:task2/shard/component/TextFormFiled.dart';
@@ -15,6 +16,8 @@ class SingView extends StatelessWidget {
   Widget build(BuildContext context) {
     var hieght = MediaQuery.sizeOf(context).height;
     var wdith = MediaQuery.sizeOf(context).width;
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     var config = Config();
 
     return Scaffold(
@@ -23,177 +26,162 @@ class SingView extends StatelessWidget {
           child: Column(
             //  mainAxisSize: MainAxisSize.max,
             children: [
-              Stack(alignment: Alignment.topLeft, children: [
-                //const Text("data"),
-
-                ClipPath(
-                  clipper: ClipPoint(),
-                  child: Container(
-                    height: ResponsvTextSize(hieght * 0.3, hieght * 0.3, 150),
-                    width: wdith,
-                    color: config.colorAppbar,
-                  ),
-                ),
-
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: wdith * 0.4,
-                    right: wdith * 0.4,
-                    top: ResponsvTextSize(hieght * 0.18, hieght * 0.18, 80),
-                  ),
-                  child: Center(
-                      child: CircleAvatarSin(config: config, width: hieght)),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: hieght * 0.08,
-                  ),
-                  child: Row(
-                    //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const ImageLeft(),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: wdith * 0.3,
-
-                          //  right: wdith * 0.3
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: wdith * 0.3,
-                              child: Center(
-                                  child: TextSingnUp(
-                                      config: config, wdith: wdith)),
+              Column(
+                children: [
+                  Stack(
+                      clipBehavior: Clip.hardEdge,
+                      alignment: Alignment.topLeft,
+                      children: [
+                        ClipPath(
+                          clipper: ClipPoint(),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: config.colorAppbar,
+                                borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(100))),
+                            height: 300,
+                            width: wdith,
+                            child: Stack(
+                              children: [
+                                const Positioned(
+                                  top: 90,
+                                  left: 20,
+                                  child: ImageLeft(),
+                                ),
+                                Positioned(
+                                    left: wdith * 0.4,
+                                    top: 50,
+                                    width: wdith * 0.6,
+                                    height: 150,
+                                    child: Row(
+                                      children: [
+                                        Flexible(
+                                            child: FittedBox(
+                                          child: TextSingnUp(
+                                              config: config, wdith: wdith),
+                                        )),
+                                        Flexible(
+                                          child: Transform.translate(
+                                            offset: Offset(-wdith * 0.03, 0),
+                                            child: Image.asset(
+                                              'images/floors.png',
+                                              fit: BoxFit.fitWidth,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ))
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                    top: hieght * 0.02,
-                    left: wdith * 0.45,
-                    child: Image.asset(
-                      'images/floors.png',
-                      height:
-                          ResponsvTextSize(hieght * 0.25, hieght * 0.25, 100),
-                      width: ResponsvTextSize(wdith * 0.5, wdith * 0.5, 100),
-                    ))
-              ]),
+                        Positioned(
+                          top: 190,
+                          left: wdith * 0.35,
+                          right: wdith * 0.35,
+                          height: 100,
+                          //width: wdith * 0.2,
+                          child: CircleAvatarSin(config: config, width: hieght),
+                        ),
+                      ]),
+                  const Text(
+                    "Add Profile Photo",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromRGBO(140, 138, 140, 1)),
+                  )
+                ],
+              ),
               Expanded(
                   flex: 3,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      TextAddPro(
-                        config: config,
-                        wdith: wdith,
+                      config.AvgSpace(context),
+                      Expanded(
+                        child: DafulteTextForm(
+                          config: config,
+                          title: "Email",
+                          isDark: false,
+                        ),
+                      ),
+                      config.smallSpace(),
+                      Expanded(
+                        child: DafulteTextForm(
+                          isDark: false,
+                          config: config,
+                          title: "Phone Number ",
+                        ),
+                      ),
+                      config.smallSpace(),
+                      Expanded(
+                        child: DafulteTextForm(
+                          isDark: false,
+                          config: config,
+                          title: " User Name",
+                        ),
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: wdith * 0.15,
+                      Expanded(
+                        child: DafulteTextForm(
+                          isDark: false,
+                          config: config,
+                          title: "Password",
                         ),
-                        child: IntrinsicHeight(
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: DafulteTextForm(
-                                  config: config,
-                                  title: "Email",
-                                  isDark: false,
-                                ),
-                              ),
-                              config.smallSpace(),
-                              Expanded(
-                                child: DafulteTextForm(
-                                  isDark: false,
-                                  config: config,
-                                  title: "Phone Number ",
-                                ),
-                              ),
-                              config.smallSpace(),
-                              Expanded(
-                                child: DafulteTextForm(
-                                  isDark: false,
-                                  config: config,
-                                  title: " User Name",
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Expanded(
-                                child: DafulteTextForm(
-                                  isDark: false,
-                                  config: config,
-                                  title: "Password",
-                                ),
-                              ),
-                              config.smallSpace(),
-                              Expanded(
-                                child: DafulteTextForm(
-                                  isDark: false,
-                                  config: config,
-                                  title: "Re Paasword",
-                                ),
-                              ),
-                              config.smallSpace(),
-                              Expanded(
-                                child: DafulteTextForm(
-                                  isDark: false,
-                                  config: config,
-                                  title: "Upload PDF ",
-                                  ColorForHindenText: config.PrimerColor,
-                                  prfixIcon: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      "images/pdf.png",
-                                      height: double.minPositive,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                      ),
+                      config.smallSpace(),
+                      Expanded(
+                        child: DafulteTextForm(
+                          isDark: false,
+                          config: config,
+                          title: "Re Paasword",
+                        ),
+                      ),
+                      config.smallSpace(),
+                      Expanded(
+                        child: DafulteTextForm(
+                          isDark: false,
+                          config: config,
+                          title: "Upload PDF ",
+                          ColorForHindenText: config.PrimerColor,
+                          prfixIcon: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset(
+                              "images/pdf.png",
+                              height: double.minPositive,
+                            ),
                           ),
                         ),
-                      )
+                      ),
+                      config.smallSpace(),
+                      Center(
+                        child: Boutton(
+                          ontap: () {
+                            print("object");
+                            Get.toNamed('/VerificationView');
+                          },
+                          hieght: 60,
+                          wdith: 170,
+                          textColor: isDark
+                              ? const Color.fromRGBO(243, 233, 245, 1)
+                              : null,
+                          titil: 'Sign Up',
+                        ),
+                      ),
+                      config.smallSpace(),
+                      TextLogin(
+                        isdark: isDark,
+                        wdith: wdith,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
                     ],
                   )),
-              Expanded(
-                child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.start,
-                  // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    config.smallSpace(),
-                    Boutton(
-                      hieght: hieght,
-                      wdith: wdith,
-                      titil: 'Sign Up',
-                    ),
-                    config.smallSpace(),
-                    Column(
-                      children: [
-                        const TextLogin(),
-                        Divider(
-                          indent: wdith * 0.3,
-                          endIndent: wdith * 0.3,
-                          height: 1,
-                          color: config.PrimerColor,
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),
@@ -203,28 +191,51 @@ class SingView extends StatelessWidget {
 }
 
 class TextLogin extends StatelessWidget {
-  const TextLogin({
-    super.key,
-  });
+  const TextLogin({super.key, required this.isdark, required this.wdith});
+  final bool isdark;
+  final double wdith;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      // crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Already have an account?",
-          style:
-              TextStyle(fontSize: 12, height: 0, fontWeight: FontWeight.w700),
-        ),
-        Text(
-          " Login ",
-          style: TextStyle(
-            color: Color.fromRGBO(60, 35, 103, 1),
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            alignment: AlignmentDirectional.center,
+            width: double.infinity,
+            child: Text.rich(TextSpan(
+                text: " Already have an account?",
+                style: TextStyle(
+                    color: isdark
+                        ? const Color.fromRGBO(243, 233, 245, 1)
+                        : Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700),
+                children: const [
+                  TextSpan(
+                    text: " Login ",
+                    style: TextStyle(
+                      color: Color.fromRGBO(60, 35, 103, 1),
+                    ),
+                  )
+                ])),
           ),
-        ),
-      ],
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 100),
+            alignment: AlignmentDirectional.center,
+            width: double.infinity,
+            color: Colors.black,
+            height: 1,
+          )
+        ],
+      ),
     );
   }
 }
@@ -237,38 +248,11 @@ class TextSingnUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Sign Up",
-        style: TextStyle(
-            fontSize: 32,
-            color: config.PrimerColor,
-            fontWeight: FontWeight.w400),
-      ),
-    );
-  }
-}
-
-class TextAddPro extends StatelessWidget {
-  const TextAddPro({
-    super.key,
-    required this.config,
-    required this.wdith,
-  });
-
-  final Config config;
-  final double wdith;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: wdith * 0.3, right: wdith * 0.3),
-      child: Center(
-        child: Text(
-          "Add Profile Photo",
-          style: TextStyle(fontSize: 15, color: config.colorSmailText),
-        ),
-      ),
+    return Text(
+      "Sign Up",
+      maxLines: 1,
+      style: TextStyle(
+          fontSize: 32, color: config.PrimerColor, fontWeight: FontWeight.w500),
     );
   }
 }
@@ -285,26 +269,29 @@ class CircleAvatarSin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: ResponsvTextSize(width * 0.15, 50, 32),
-      backgroundColor: config.colorCircelAvater,
-      // config: null,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Flexible(
-            child: FittedBox(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.man_2,
-                  size: ResponsvTextSizemix(width * 0.15, 32),
-                  color: const Color.fromRGBO(140, 138, 140, 1),
+    return FittedBox(
+      child: CircleAvatar(
+        //  radius: 50,
+
+        backgroundColor: config.colorCircelAvater,
+        // config: null,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Flexible(
+              child: FittedBox(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.man_2,
+                    size: ResponsvTextSizemix(width * 0.15, 32),
+                    color: const Color.fromRGBO(140, 138, 140, 1),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
