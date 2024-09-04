@@ -76,7 +76,7 @@ class SingView extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          top: 190,
+                          top: 200,
                           left: wdith * 0.35,
                           right: wdith * 0.35,
                           height: 100,
@@ -197,44 +197,47 @@ class TextLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            alignment: AlignmentDirectional.center,
-            width: double.infinity,
-            child: Text.rich(TextSpan(
-                text: " Already have an account?",
-                style: TextStyle(
-                    color: isdark
-                        ? const Color.fromRGBO(243, 233, 245, 1)
-                        : Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700),
-                children: const [
-                  TextSpan(
-                    text: " Login ",
-                    style: TextStyle(
-                      color: Color.fromRGBO(60, 35, 103, 1),
-                    ),
-                  )
-                ])),
+    return Expanded(
+      child: Center(
+        child: IntrinsicWidth(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  // width: double.infinity,
+                  child: Text.rich(TextSpan(
+                      text: " Already have an account?",
+                      style: TextStyle(
+                          color: isdark
+                              ? const Color.fromRGBO(243, 233, 245, 1)
+                              : Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700),
+                      children: const [
+                        TextSpan(
+                          text: " Login ",
+                          style: TextStyle(
+                            color: Color.fromRGBO(60, 35, 103, 1),
+                          ),
+                        )
+                      ])),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                  child: Divider(
+                thickness: 1,
+                color: Config().PrimerColor,
+              ))
+            ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 100),
-            alignment: AlignmentDirectional.center,
-            width: double.infinity,
-            color: Colors.black,
-            height: 1,
-          )
-        ],
+        ),
       ),
     );
   }

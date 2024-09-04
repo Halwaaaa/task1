@@ -13,7 +13,7 @@ class TextLogo extends StatelessWidget {
         style: TextStyle(
             //  fontFamily: 'Montserrat',
             fontWeight: FontWeight.w800,
-            fontSize: 80,
+            fontSize: 55,
             color: Config().PrimerColor
             // height: hieght * 0.08 / wdith * 0.1,
             ));

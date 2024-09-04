@@ -8,68 +8,95 @@ class SliverGridBestSaler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Config config = Config();
-    return SliverPadding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      sliver: SliverGrid.builder(
-        //shrinkWrap: true,
+    return SliverConstrainedCrossAxis(
+      maxExtent: 1000,
+      sliver: SliverPadding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        sliver: SliverGrid.builder(
+          //shrinkWrap: true,
 
-        itemCount: 4,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20,
-            childAspectRatio: 0.7,
-            //mainAxisExtent: 20,
-            crossAxisSpacing: 20),
-        itemBuilder: (context, index) => Container(
-          height: double.infinity,
-          decoration: ShapeDecoration(
-            color: config.colorAppbar2,
-            shadows: [
-              config.shadowContiner(),
-            ],
-            shape:
-                ContinuousRectangleBorder(borderRadius: config.borderRadius()),
+          itemCount: 4,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: MediaQuery.sizeOf(context).width > 400
+                  ? 4
+                  : MediaQuery.sizeOf(context).width > 300
+                      ? 3
+                      : 2,
+              mainAxisSpacing: 20,
+              childAspectRatio: 0.7,
+              //  mainAxisExtent: 1000,
+              //mainAxisExtent: 20,
+              crossAxisSpacing: 20),
+          itemBuilder: (context, index) => Align(
+            alignment: Alignment.center,
+            child: Container(
+              // height: double.infinity,
+              decoration: ShapeDecoration(
+                color: config.colorAppbar2,
+                shadows: [
+                  config.shadowContiner(),
+                ],
+                shape: ContinuousRectangleBorder(
+                    borderRadius: config.borderRadius()),
+              ),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Align(
+                        alignment: AlignmentDirectional.center,
+                        child: Image.asset(bestsellerModules[index].ImageName,
+                            fit: BoxFit.cover),
+                      ),
+                    ),
+                    config.smallSpace(),
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Flexible(
+                              child: FittedBox(
+                                child: Text(
+                                  bestsellerModules[index].About,
+                                  style: TextStyle(
+                                    color: config.PrimerColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: FittedBox(
+                                child: Text(
+                                  "Price:${bestsellerModules[index].Price}\$",
+                                  style: TextStyle(
+                                    color: config.PrimerColor,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            config.smallSpace(),
+                            Expanded(
+                                child: FittedBox(
+                                    child: BouttonAddToCart(config: config))),
+                            config.smallSpace(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ]),
+            ),
           ),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: AlignmentDirectional.center,
-                  child: Image.asset(bestsellerModules[index].ImageName,
-                      width: 90, height: 143, fit: BoxFit.cover),
-                ),
-                config.smallSpace(),
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.symmetric(horizontal: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        bestsellerModules[index].About,
-                        style: TextStyle(
-                          color: config.PrimerColor,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12,
-                        ),
-                      ),
-                      Text(
-                        "Price:${bestsellerModules[index].Price}\$",
-                        style: TextStyle(
-                          color: config.PrimerColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                config.smallSpace(),
-                BouttonAddToCart(config: config),
-                config.smallSpace(),
-              ]),
         ),
       ),
     );
@@ -95,10 +122,12 @@ class BouttonAddToCart extends StatelessWidget {
           height: 25,
           width: 90,
           child: const Center(
-            child: Text(
-              'Add To Cart',
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
-              textAlign: TextAlign.center,
+            child: FittedBox(
+              child: Text(
+                'Add To Cart',
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ));

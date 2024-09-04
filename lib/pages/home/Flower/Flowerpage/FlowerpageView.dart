@@ -11,6 +11,7 @@ class FlowerpageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Config config = Config();
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return SliverMainAxisGroup(slivers: [
       SliverToBoxAdapter(
@@ -27,12 +28,32 @@ class FlowerpageView extends StatelessWidget {
               ),
             ),
             config.smallSpace(),
-            Align(
-              alignment: Alignment.center,
-              child: Wrap(
-                spacing: 30,
+            IntrinsicWidth(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //spacing: 30,
+
                 children: List.generate(3, (index) {
-                  return Chip(label: Text(ModulesFlowerFliter[index]));
+                  return Flexible(
+                    child: FittedBox(
+                        child: Chip(
+                            shape: const RoundedRectangleBorder(
+                                side: BorderSide.none,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6))),
+                            backgroundColor: isDark
+                                ? config.colorAppbarDark2
+                                : config.colorAppbar2,
+                            label: Text(
+                              ModulesFlowerFliter[index],
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: isDark
+                                      ? const Color.fromRGBO(143, 143, 143, 1)
+                                      : null),
+                            ))),
+                  );
                 }),
               ),
             ),
@@ -40,7 +61,7 @@ class FlowerpageView extends StatelessWidget {
           ],
         ),
       ),
-      const FlowerdetailsView(),
+      // const FlowerdetailsView(),
       // SliverPadding(
       //   padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
       //   sliver: SliverGrid.builder(

@@ -66,6 +66,7 @@ flutter:
     - images/verfictionImage.png
     - images/homeFlower.png
     - images/mothersDayOfferImage.png
+    - images/mothersDayOfferImage2.png
     - images/Bestseller1.png
     - images/Bestseller2.png
     - images/gifts.png
@@ -81,6 +82,7 @@ flutter:
     - images/MyCart.png
     - images/Setting1.png
     - images/imageSetting.png
+    - images/LayoutHome.png
 
 
 

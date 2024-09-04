@@ -9,5 +9,6 @@ class LoginCon extends GetxController {
     Get.toNamed(
       '/SingView',
     );
+    update();
   }
 }

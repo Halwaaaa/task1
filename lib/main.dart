@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       // highContrastTheme: ThemeData.dark(),
       darkTheme: them.customDarkThem,
       theme: them.customlightThem,
-      initialRoute: '/',
+      initialRoute: '/LayoutHome',
       getPages: getPage,
       // routingCallback: ,
       themeMode: ThemeMode.dark,

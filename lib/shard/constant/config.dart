@@ -8,10 +8,14 @@ class Config {
 
   Color colorCircelAvater = const Color.fromRGBO(217, 217, 217, 1);
   Color colorSmailText = const Color.fromRGBO(140, 138, 140, 1);
+  Color colorBackgroundDark = const Color.fromRGBO(69, 85, 85, 10);
   Color PrimerColor = const Color.fromRGBO(60, 35, 103, 1);
 
   Color colorAppbar2 = const Color.fromRGBO(230, 246, 246, 1);
+  Color colorAppbarDark2 = const Color.fromRGBO(217, 233, 233, 1);
+
   Color colorBorder = const Color.fromRGBO(243, 233, 245, 1);
+  //Color colorBorder = const Color.fromRGBO(243, 233, 245, 1);
   Color colorMothersDayOfferBorder = const Color.fromRGBO(255, 227, 214, 1);
   Color colorMothersDayOfferTitle = const Color.fromRGBO(112, 112, 112, 1);
   //(243, 233, 245, 1)
@@ -35,9 +39,11 @@ class Config {
     );
   }
 
-  TextStyle TextHomePage() {
+  TextStyle TextHomePage(bool isdark) {
     return TextStyle(
-        fontSize: 20, fontWeight: FontWeight.w700, color: PrimerColor);
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        color: isdark ? colorAppbarDark2 : PrimerColor);
   }
 
   BoxShadow shadowContiner() {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:task2/main.dart';
 import 'package:task2/shard/component/Images.dart';
 import 'package:task2/shard/component/boutton.dart';
@@ -46,7 +48,8 @@ class VerificationView extends StatelessWidget {
                 ),
               ],
             ),
-            backgroundColor: config.colorAppbar2,
+            backgroundColor:
+                isDark ? config.colorAppbarDark2 : config.colorAppbar2,
             shape: RoundedRectangleBorder(
                 // color: ,
                 borderRadius: BorderRadius.only(
@@ -113,7 +116,16 @@ class VerificationView extends StatelessWidget {
                                           child: TextFormField(
                                             maxLength: 1,
                                             textAlign: TextAlign.center,
-                                            decoration: const InputDecoration(
+                                            decoration: InputDecoration(
+                                                fillColor: isDark
+                                                    ? const Color.fromRGBO(
+                                                        69, 85, 85, 10)
+                                                    : null,
+                                                border:
+                                                    const UnderlineInputBorder(
+                                                        //borderSide:
+                                                        //   BorderSide.none
+                                                        ),
                                                 focusColor: Colors.amber),
                                             onChanged: (value) {
                                               if (value.length == 1 &&
@@ -147,7 +159,14 @@ class VerificationView extends StatelessWidget {
                             ),
                           ),
                           config.smallSpace(),
-                          ButtonSubmit(wdith: wdith, config: config),
+                          ButtonSubmit(
+                              ontap: () {
+                                Get.toNamed(
+                                  '/LayoutHome',
+                                );
+                              },
+                              wdith: wdith,
+                              config: config),
                           config.LargeSpace(context)
                         ],
                       ),
@@ -164,31 +183,36 @@ class VerificationView extends StatelessWidget {
 }
 
 class ButtonSubmit extends StatelessWidget {
-  const ButtonSubmit({
+  ButtonSubmit({
     super.key,
     required this.wdith,
     required this.config,
+    this.ontap,
   });
 
   final double wdith;
   final Config config;
+  void Function()? ontap;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: 60,
-        width: ResponsvTextSizemix(wdith * 0.6, 200),
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(7)),
-            color: config.colorBorder),
-        child: Center(
-          child: Text(
-            'Submit ',
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w900,
-                color: config.PrimerColor),
+    return InkWell(
+      onTap: ontap,
+      child: Center(
+        child: Container(
+          height: 60,
+          width: ResponsvTextSizemix(wdith * 0.6, 200),
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(7)),
+              color: config.colorBorder),
+          child: Center(
+            child: Text(
+              'Submit ',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w900,
+                  color: config.PrimerColor),
+            ),
           ),
         ),
       ),

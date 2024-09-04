@@ -152,7 +152,11 @@ class _loginViewState extends State<loginView> {
                                     config.smallSpace(),
 
                                     Boutton(
-                                        ontap: LoginConttroll.loginButton(),
+                                        ontap: () {
+                                          Get.toNamed(
+                                            '/SingView',
+                                          );
+                                        },
                                         hieght: 60,
                                         wdith: 170,
                                         titil: 'Login '),

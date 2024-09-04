@@ -5,6 +5,7 @@ import 'package:task2/Modules/Modules.dart';
 
 import 'package:task2/pages/home/Flower/Flowerpage/FlowerpageView.dart';
 import 'package:task2/pages/home/home_page/home_page.dart';
+import 'package:task2/shard/component/AppBarLayoutHome.dart';
 import 'package:task2/shard/component/TextLogo.dart';
 import 'package:task2/shard/component/boutton.dart';
 import 'package:task2/shard/component/boutton2.dart';
@@ -43,6 +44,7 @@ class _LayoutHomeState extends State<LayoutHome> {
   Widget build(BuildContext context) {
     var hieght = MediaQuery.sizeOf(context).height;
     var wdith = MediaQuery.sizeOf(context).width;
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     Config config = Config();
     return Scaffold(
@@ -76,32 +78,26 @@ class _LayoutHomeState extends State<LayoutHome> {
                 ]),
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: isDark ? config.colorBackgroundDark : Colors.white,
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
               pinned: true,
-              toolbarHeight: ResponsvTextSize(hieght * 0.3, 300, 150),
-              // titleSpacing: 150,
+              toolbarHeight: ResponsvTextSize(hieght * 0.3, 300, 200),
               title: Appbar(
                 hieght: hieght,
                 wdith: wdith,
                 config: config,
               ),
-              // bottom: PreferredSize(
-              //     preferredSize: const Size.fromHeight(100),
-              //     child: Padding(
-              //       padding: const EdgeInsets.only(bottom: 50),
-              //       child: ConSearch(config: config, wdith: wdith),
-              //     )),
-              //  expandedHeight: ResponsvTextSize(hieght * 0.42, 350, 100),
-              backgroundColor: config.colorAppbar2,
+              backgroundColor:
+                  isDark ? config.colorAppbarDark2 : config.colorAppbar2,
               shape: const RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.only(bottomLeft: Radius.circular(61))),
             ),
+            const HomePage(),
 
-            const FlowerpageView(),
+            //  const FlowerpageView(),
 
             const SliverToBoxAdapter(
               child: SizedBox(
@@ -126,48 +122,6 @@ class _LayoutHomeState extends State<LayoutHome> {
             // ),
           ],
         ));
-  }
-}
-
-class Appbar extends StatelessWidget {
-  const Appbar({
-    super.key,
-    required this.hieght,
-    required this.wdith,
-    required this.config,
-  });
-
-  final double hieght;
-  final double wdith;
-  final Config config;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'images/homeFlower.png',
-              height: ResponsvTextSize(hieght * 0.15, 125, 80),
-              width: ResponsvTextSize(hieght * 0.15, 125, 80),
-            ),
-            TextLogo(
-              hieght: hieght,
-              wdith: wdith,
-            )
-          ],
-        ),
-        // config.smallSpace(),
-        ConSearch(
-          config: config,
-          wdith: wdith,
-        ),
-        config.smallSpace(),
-      ],
-    );
   }
 }
 
